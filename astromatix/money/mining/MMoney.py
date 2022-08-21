@@ -1,0 +1,5 @@
+amount = input('Amount ')
+money = (int(input('Money Made ')) - 5000)
+FM = ((int(money) / 1.75) / int(amount))
+print(str(FM))
+print(str(int(money) - (int(amount) * int(FM))))
