@@ -18,7 +18,7 @@ class Empl(Per):
     def ujo(self):
         return self.job
 def add(val):
-    if input('') == '  ':
+    if input('') == (not None):
         cls()
         print(input('nna') + ' = ' + 'Empl(\'' + input('na') + '\', \'' + input('ra') + '\', \'' + input('jo') + '\')')
 
