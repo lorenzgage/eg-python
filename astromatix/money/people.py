@@ -1,7 +1,6 @@
 from os import*
 def cls():
     system('cls')
-c = input('')
 cls()
 class Per:
     def __init__(self, name):
@@ -21,7 +20,7 @@ class Empl(Per):
 def add(val):
     if input('') == '  ':
         cls()
-        print(input('nna') + ' = ' + 'Empl(' + c + input('na') + c + ', ' + c + input('ra') + c + ', ' + c + input('jo') + c + ')')
+        print(input('nna') + ' = ' + 'Empl(\'' + input('na') + '\', \'' + input('ra') + '\', \'' + input('jo') + '\')')
 
 lor = Empl('lorenzgage', 'Co. Founder', 'Driver')
 kra = Empl('krayqwert', 'Founder', 'Manager')
