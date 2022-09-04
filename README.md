@@ -1,2 +1,2 @@
 # eg-python
-Eliot's python repo
+Eliot's python repository
