@@ -1,5 +1,7 @@
 from os import*
-from time import*
+from random import*
+score = 0
+zton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 screanxlan = 10
 screanylan = 10
 screan = {
@@ -104,28 +106,60 @@ screan = {
     '89': '0',
     '99': '0'
 }
-sprx = '5'
-spry = '5'
-sprite = (sprx + spry)
+class sprite:
+    def __init__(spr, x, y):
+        spr.x = x
+        spr.y = y
+    def move(spr):
+        inpu = input('')
+        if inpu == 'w':
+            if spr1.y != 0:
+                screan[str(spr1.x) + str(spr1.y)] = '0'
+                spr1.y -= 1
+                screan[str(spr1.x) + str(spr1.y)] = '1'
+        elif inpu == 's':
+            if spr1.y != 9:
+                screan[str(spr1.x) + str(spr1.y)] = '0'
+                spr1.y += 1
+                screan[str(spr1.x) + str(spr1.y)] = '1'
+        elif inpu == 'd':
+            if spr1.x != 9:
+                screan[str(spr1.x) + str(spr1.y)] = '0'
+                spr1.x += 1
+                screan[str(spr1.x) + str(spr1.y)] = '1'
+        elif inpu == 'a':
+            if spr1.x != 0:
+                screan[str(spr1.x) + str(spr1.y)] = '0'
+                spr1.x -= 1
+                screan[str(spr1.x) + str(spr1.y)] = '1'
+        return scrprint()
+spr1 = sprite(0, 0)
+enemy = sprite(9, 9)
+screan[str(enemy.x) + str(enemy.y)] = '2'
 def scrprint():
+    screan[str(spr1.x) + str(spr1.y)] = '1'
     for x in range(screanxlan * screanylan):
         if x < 10:
             screan[str(x) + '0']
         else:
             screan[str(x)]
     system('cls')
+    screan[str(spr1.x) + str(spr1.y)] = '1'
     keyline = ''
-    screan[sprite] = '1'
     for x in range(int((len(screan)) / (screanxlan))):
+        screan[str(spr1.x) + str(spr1.y)] = '1'
         for y in range(screanylan):
-            keyline += screan[str(y) + str(x)]
+            keyline += screan[str(y) + str(x)] + '   '
         print(keyline)
         keyline = ''
-def move(x, y, wx, wy):
-    x = str(wx)
-    y = str(wy)
-    return scrprint()
-
+        screan[str(spr1.x) + str(spr1.y)] = '1'
+    print('score: ' + str(score))
+    print('high score: 301')
 scrprint()
-sleep(1)
-move(sprx, spry, '7', '8')
+while True:
+    if str(spr1.x) + str(spr1.y) == str(enemy.x) + str(enemy.y):
+        enemy = sprite(choice(zton), choice(zton))
+        score += 1
+    screan[str(enemy.x) + str(enemy.y)] = '2'
+    scrprint()
+    spr1.move()
