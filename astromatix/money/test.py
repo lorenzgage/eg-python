@@ -1,6 +1,12 @@
 from os import*
 from random import*
 score = 0
+HScore = 5
+game_on = True
+wwep = False
+num3 = 1
+num = 0
+onetwo = 0
 zton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 screanxlan = 10
 screanylan = 10
@@ -133,9 +139,34 @@ class sprite:
                 spr1.x -= 1
                 screan[str(spr1.x) + str(spr1.y)] = '1'
         return scrprint()
+    def track(gorilla1):
+        screan[str(gorilla.x) + str(gorilla.y)] = '0'
+        if wwep == True:
+            if gorilla.x > spr1.x:
+                gorilla.x += 1
+            elif gorilla.x < spr1.x:
+                gorilla.x -= 1
+            if gorilla.y > spr1.y:
+                gorilla.y += 1
+            elif gorilla.y < spr1.y:
+                gorilla.y -= 1
+        else:
+            if gorilla.x < spr1.x:
+                gorilla.x += 1
+            elif gorilla.x > spr1.x:
+                gorilla.x -= 1
+            if gorilla.y < spr1.y:
+                gorilla.y += 1
+            elif gorilla.y > spr1.y:
+                gorilla.y -= 1
+        screan[str(gorilla.x) + str(gorilla.y)] = '3'
+        
 spr1 = sprite(0, 0)
 enemy = sprite(9, 9)
+gorilla = sprite(0, 9)
+wep = sprite(9, 0)
 screan[str(enemy.x) + str(enemy.y)] = '2'
+screan[str(gorilla.x) + str(gorilla.y)] = '3'
 def scrprint():
     screan[str(spr1.x) + str(spr1.y)] = '1'
     for x in range(screanxlan * screanylan):
@@ -144,22 +175,52 @@ def scrprint():
         else:
             screan[str(x)]
     system('cls')
-    screan[str(spr1.x) + str(spr1.y)] = '1'
     keyline = ''
     for x in range(int((len(screan)) / (screanxlan))):
-        screan[str(spr1.x) + str(spr1.y)] = '1'
         for y in range(screanylan):
-            keyline += screan[str(y) + str(x)] + '   '
+            keyline += screan[str(y) + str(x)] + ' '
         print(keyline)
         keyline = ''
-        screan[str(spr1.x) + str(spr1.y)] = '1'
     print('score: ' + str(score))
-    print('high score: 301')
+    print('high score: ' + str(HScore))
 scrprint()
 while True:
-    if str(spr1.x) + str(spr1.y) == str(enemy.x) + str(enemy.y):
-        enemy = sprite(choice(zton), choice(zton))
-        score += 1
-    screan[str(enemy.x) + str(enemy.y)] = '2'
+    onetwo += 1
+    if onetwo == 3:
+        if wwep == False:
+            gorilla.track()
+            if str(spr1.x) + str(spr1.y) == str(gorilla.x) + str(gorilla.y):
+                game_on = False
+                system('cls')
+                onetwo = 0
+            else:
+                if str(spr1.x) + str(spr1.y) == str(gorilla.x) + str(gorilla.y):
+                    game_on = 'win'
+                    system('cls')
+            onetwo = 0
+    system('cls')
+    if game_on == True:
+        if score > 4:
+            screan[str(wep.x) + str(wep.y)] = '7'
+            if str(spr1.x) + str(spr1.y) == str(wep.x) + str(wep.y):
+                wwep = True
+                screan[str(spr1.x) + str(spr1.y)] = '4'
+        if str(spr1.x) + str(spr1.y) == str(enemy.x) + str(enemy.y):
+            enemy = sprite(choice(zton), choice(zton))
+            score += 1
+            if score > HScore:
+                HScore += 1
+        screan[str(enemy.x) + str(enemy.y)] = '2'
+        screan[str(gorilla.x) + str(gorilla.y)] = '3'
+    elif game_on == 'win':
+        print('You Win')
+    else:
+        print(str(game_on))
+    if wwep == True:
+        screan[str(spr1.x) + str(spr1.y)] = '4'
+        screan[str(wep.x) + str(wep.y)] = '0'
+        if str(spr1.x) + str(spr1.y) == str(gorilla.x) + str(gorilla.y):
+            game_on = 'win'
+            system('cls')
     scrprint()
     spr1.move()

@@ -5,7 +5,6 @@ cls()
 class Per:
     def __init__(self, name):
         self.name = name
-
 class Empl(Per):
     def __init__(self, name, rank, job):
         super().__init__(name)
@@ -17,8 +16,10 @@ class Empl(Per):
         return self.rank
     def ujo(self):
         return self.job
+    def use(name):
+        return name.__module__
 def add(val):
-    if input('') == (not None):
+    if input('') != None:
         cls()
         print(input('nna') + ' = ' + 'Empl(\'' + input('na') + '\', \'' + input('ra') + '\', \'' + input('jo') + '\')')
 

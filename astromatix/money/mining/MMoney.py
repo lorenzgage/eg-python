@@ -3,6 +3,27 @@ from math import*
 import random
 from time import sleep
 system('cls')
+class Per:
+    def __init__(self, name):
+        self.name = name
+
+class Empl(Per):
+    def __init__(self, name, rank, job):
+        super().__init__(name)
+        self.rank = rank
+        self.job = job
+    def una(self):
+        return self.name
+    def ura(self):
+        return self.rank
+    def ujo(self):
+        return self.job
+    def use(name):
+        return name.__module__
+
+lorenzgage = Empl('lorenzgage', 'Co. Founder', 'Driver')
+krayqwert = Empl('krayqwert', 'Founder', 'Manager')
+system('cls')
 def ERROR(type, val):
     print(str(type) + ' error: ' + val)
 def clear():
@@ -72,8 +93,21 @@ def moneyEntry():
     calc(3, None)
     return money
 
+def driverEntry():
+    driver = (input('driver '))
+    calc(4, None)
+    return driver
+
 amount = amountEntry()
 money = moneyEntry()
+driver = driverEntry()
+
+if driver == Empl.__name__:
+    driver.use
+    if driver.job == 'Driver':
+        print('good')
+else:
+    print(str(driver))
 
 system('cls')
 FM = ((int(money) / 1.75) / int(amount))
